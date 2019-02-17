@@ -61,8 +61,7 @@ function getUnsplashImage (completeApi){
             })
             .then(function (data) {
                 console.log(data);
-                var json = JSON.parse(data);
-                document.getElementById("unsplash-photo").src = `${json.urls.small}`;
+                document.getElementById("unsplash-image").src = `${data.urls.small}`;
             });
 }
 
