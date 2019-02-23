@@ -9,6 +9,7 @@ const UNSPLASH_API = "https://api.unsplash.com/";
 const UNSPLASH_RANDOM = "photos/random";
 const UNSPLASH_QUERY = "?query=";
 const UNSPLASH_ORIENTATION = "&orientation=landscape";
+const OPENWEATHER_API_KEY = "47ea0a048f7531bb1f3640df7c7e87ff";
 
 //create getDate function that returns a value between on and 12
 function month() {
@@ -85,3 +86,60 @@ getUnsplashImage(completeAPI);
 //use images from the web or create my own.
 
 //consider how to put this on the page (another page or some element hiding)
+(function () {
+  let date = new Date();
+  let day = date.getDate();
+  let month = date.getMonth();
+  let year = date.getFullYear();
+  console.log("date", `${day}  ${month} ${year}`);
+  document.getElementById("date").innerHTML = `${day}  ${month} ${year}`;
+})();
+
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+
+function success(pos) {
+  console.log(pos);
+  var crd = pos.coords;
+
+  console.log("Your current position is : ");
+  console.log(`Latitude: ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
+  console.log(`More or less ${crd.accuracy} meters.`);
+  let latitude = crd.latitude;
+  let longitude = crd.longitude;
+  myMap(latitude, longitude);
+  getWeatherForecast(latitude, longitude);
+}
+
+function error(err) {
+  console.warn(`Error(${err.code}): ${err.message}`);
+}
+
+navigator.geolocation.getCurrentPosition(success, error, options);
+
+function myMap(lat, long) {
+  var mapProp = {
+    center: new google.maps.LatLng(lat, long),
+    zoom: 12
+  };
+  var map = new google.maps.Map(
+    document.getElementById("googleMap"),
+    mapProp
+  );
+}
+
+function getWeatherForecast (lat, long) {
+  fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${OPENWEATHER_API_KEY}&units=metric`)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      document.getElementById("weather-temp").innerHTML = data.main.temp.toFixed(0);
+    });
+
+}

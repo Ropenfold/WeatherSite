@@ -9,18 +9,16 @@
   </head>
   <body>
     <div class="cover" id="unsplash-image">
-      <form class="flex-form">
-        <input type="search" placeholder="search by location..." />
-        <label for="country">country</label>
-        <select name="countryList" id="countryForm">
-          <option value="uk">uk</option>
-          <option value="us">us</option>
-          <option value="india">india</option>
-        </select>
-        <input type="submit" value="Search" />
-      </form>
+      <div class="weather-container"></div>
+        <div id="googleMap" style="width:35%;height:250px;"></div>
+        <div class="weather-info-container">
+          <div id="date"></div>
+          <div id="weather-img"></div>
+          <div id="weather-temp"></div>
+        </div>
     </div>
-
-    <script src="index.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw_OAsyYMK8_Xv_l1FqTdapCIRmpw4DFY&callback=myMap"></script>
+      <script src="index.js"></script>
   </body>
 </html>

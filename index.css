@@ -32,15 +32,9 @@ a {
   align-items: center;
 }
 
-.flex-form input[type="submit"] {
-  background: #ff5a5f;
-  border-top: 1px solid #ff5a5f;
-  border-bottom: 1px solid #ff5a5f;
-  color: white;
-}
 
-.flex-form > * {
-  border: 0;
+.weather-container > * {
+  border: 5px solid red;
   padding: 10px;
   background: white;
   line-height: 50px;
@@ -60,12 +54,9 @@ a {
   height: 100vh;
 }
 
-.flex-form {
+.weather-info-container {
   display: flex;
-  border: 20px solid rgba(0, 0, 0, 0.3);
-  border-radius: 5px;
-}
-
-input[type="search"] {
-  flex-basis: 500px;
+  border: 5px solid red;
+  flex: column;
+  background-color: white;
 }
