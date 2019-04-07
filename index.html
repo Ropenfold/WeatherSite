@@ -9,14 +9,21 @@
   </head>
   <body>
     <div class="cover" id="unsplash-image">
-      <div class="weather-container"></div>
-        <div id="googleMap" style="width:35%;height:250px;"></div>
-        <div class="weather-info-container">
+      <div class="weather-container">
+        <div id="googleMap"></div>
+          <div class="weather-location">
+          <div id="location"></div>
           <div id="date"></div>
-          <div id="weather-img"></div>
           <div id="weather-temp"></div>
+          </div>
         </div>
-    </div>
+        <div class="unsplash-info">
+           <div>photo: <div id="photo-name"></div></div>
+          <div>photographer: <div id="photo-author"></div></div>
+           <div>taken from <a href="https://unsplash.com">unsplash</a> </div>
+         </div> 
+      </div>
+      </div>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw_OAsyYMK8_Xv_l1FqTdapCIRmpw4DFY&callback=myMap"></script>
       <script src="index.js"></script>

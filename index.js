@@ -67,6 +67,8 @@ function getUnsplashImage(completeApi) {
       backgroundImage.style.backgroundRepeat = "no-repeat";
       backgroundImage.style.backgroundPosition = "center";
       backgroundImage.style.backgroundSize = "cover";
+      document.getElementById("photo-name").innerHTML = data.alt_description;
+      document.getElementById("photo-author").innerHTML = data.user.name;
     });
 }
 
@@ -86,14 +88,14 @@ getUnsplashImage(completeAPI);
 //use images from the web or create my own.
 
 //consider how to put this on the page (another page or some element hiding)
-(function () {
+function getDate() {
   let date = new Date();
   let day = date.getDate();
   let month = date.getMonth();
   let year = date.getFullYear();
   console.log("date", `${day}  ${month} ${year}`);
-  document.getElementById("date").innerHTML = `${day}  ${month} ${year}`;
-})();
+  document.getElementById("date").innerHTML = `${day}  ${month + 1} ${year}`;
+};
 
 var options = {
   enableHighAccuracy: true,
@@ -112,7 +114,9 @@ function success(pos) {
   let latitude = crd.latitude;
   let longitude = crd.longitude;
   myMap(latitude, longitude);
+  getDate();
   getWeatherForecast(latitude, longitude);
+  getCityLocation();
 }
 
 function error(err) {
@@ -139,7 +143,17 @@ function getWeatherForecast (lat, long) {
     })
     .then(function (data) {
       console.log(data);
-      document.getElementById("weather-temp").innerHTML = data.main.temp.toFixed(0);
+      document.getElementById("weather-temp").innerHTML =` ${data.main.temp.toFixed(0)}F`;
     });
+}
 
+function getCityLocation(){
+  fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=fb23052853f9463b931f48a4b4bdc8a4&fields=city`)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      document.getElementById("location").innerHTML = data.city;
+    });
 }
