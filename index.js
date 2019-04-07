@@ -67,8 +67,8 @@ function getUnsplashImage(completeApi) {
       backgroundImage.style.backgroundRepeat = "no-repeat";
       backgroundImage.style.backgroundPosition = "center";
       backgroundImage.style.backgroundSize = "cover";
-      document.getElementById("photo-name").innerHTML = data.alt_description;
-      document.getElementById("photo-author").innerHTML = data.user.name;
+      document.getElementById("photo-name").innerHTML = `photo: ${data.alt_description}`;
+      document.getElementById("photo-author").innerHTML = `photographer: ${data.user.name}`;
     });
 }
 

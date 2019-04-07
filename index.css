@@ -72,5 +72,6 @@ a {
 .unsplash-info {
   display: flex;
   flex-direction: column;
+  font-weight: bold;
 }
 
